@@ -1,0 +1,25 @@
+[project]
+name = "biased-split"
+version = "0.1.0"
+description = "Controlled molecular dataset splitting for honest model evaluation"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "matplotlib>=3.11.0",
+    "networkx>=3.6.1",
+    "numpy>=2.4.6",
+    "pandas>=3.0.3",
+    "pyarrow>=18.0",
+    "rdkit>=2026.3.3",
+    "scikit-learn>=1.9.0",
+    "scipy>=1.17.1",
+    "statsmodels>=0.14",
+    "xgboost>=2.0",
+]
+
+[project.optional-dependencies]
+dl = [
+    "chemprop>=2.0",
+    "lightning>=2.0",
+    "torch>=2.0",
+]
