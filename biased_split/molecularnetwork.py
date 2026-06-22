@@ -83,10 +83,15 @@ def molecular_network_from_list(
 
 
 def df_to_ecfp4_molecular_network(
-    df, smiles_col, activity_col, similarity_threshold, activity_threshold
+    df,
+    smiles_col,
+    activity_col,
+    similarity_threshold,
+    activity_threshold,
+    similarity_method="tanimoto",
 ):
     fps_bitvect = df[smiles_col].map(smiles_to_ecfp4_bitvect).tolist()
-    sim_matrix = compute_similarity_matrix(fps_bitvect)
+    sim_matrix = compute_similarity_matrix(fps_bitvect, similarity_method)
 
     adj_matrix = np.triu(sim_matrix, k=1)
     adj_matrix[adj_matrix < similarity_threshold] = 0
@@ -161,10 +166,12 @@ def visualise_molnet_split(
     fig, ax = plt.subplots(figsize=(10, 9))
     edge_colors = []
     for u, v in G.edges():
-        if (
-            abs(G.nodes[u]["activity"] - G.nodes[v]["activity"])
+        is_cliff_edge = (
+            cliff
+            and abs(G.nodes[u]["activity"] - G.nodes[v]["activity"])
             > G.graph["activity_threshold"]
-        ):
+        )
+        if is_cliff_edge:
             edge_colors.append(CLIFF + (0.9,))
         else:
             w = G.edges[u, v]["weight"]

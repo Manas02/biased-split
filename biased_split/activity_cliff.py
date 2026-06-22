@@ -29,8 +29,8 @@ class ActivityCliffSplitter:
     def split_for_intended_bias(
         self,
         smiless,
-        similarity_matrix,
         activity_values,
+        similarity_matrix,
         intended_bias,  # this is the fraction that we _try_ to construct. Depending on dataset and parameters this may not be possible and thus we ALWAYS report and use *effective bias*.
         random_seed,
     ):
@@ -177,7 +177,7 @@ class ActivityCliffSplitter:
 
         for i in range(n):
             for j in range(i + 1, n):  # symmetric matrix
-                if similarity_matrix[i, j] < similarity_threshold:  # type: ignore
+                if similarity_matrix[i, j] < similarity_threshold:
                     continue
                 activity_difference = abs(
                     float(activity_values[i]) - float(activity_values[j])
@@ -204,7 +204,7 @@ class ActivityCliffSplitter:
         cliff_edges, cliff_degrees, n_molecules, n_cliff_test_target, rng
     ):  # this is to ensure reproducibility with random selection
         assignment = np.full(
-            n_molecules, UNASSIGNED_NODE
+            n_molecules, UNASSIGNED_NODE, dtype=np.int8
         )  # array with length of n_molecules filled with 0s
         n_cliff_test_placed = 0
 
