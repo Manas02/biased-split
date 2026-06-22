@@ -5,11 +5,13 @@ description = "Controlled molecular dataset splitting for honest model evaluatio
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "ipykernel>=7.3.0",
     "matplotlib>=3.11.0",
     "networkx>=3.6.1",
     "numpy>=2.4.6",
     "pandas>=3.0.3",
     "pyarrow>=18.0",
+    "pygraphviz>=1.14",
     "rdkit>=2026.3.3",
     "scikit-learn>=1.9.0",
     "scipy>=1.17.1",
