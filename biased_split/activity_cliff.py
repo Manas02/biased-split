@@ -121,8 +121,8 @@ class ActivityCliffSplitter:
                 train_indices, test_indices, effective_bias = (
                     self.split_for_intended_bias(
                         smiless,
-                        similarity_matrix,
                         activity_values,
+                        similarity_matrix,
                         intended_bias,
                         repeat_index,
                     )
